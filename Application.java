@@ -10,42 +10,55 @@ import java.util.Collection;
  */
 public class Application {
     DataInput input = new DataInput();
+    
 
 
     public static void main(String[] args) {
         Application app = new Application();
         
-        app.calculate();
+        app.handleApplication();
     }
 
-    public void calculate(){
-        int[] coordinates = input.getCoordinatesFromInput();
-        int commonSideY, commonSideX;
+    public void handleApplication(){
+        int[] coordinates;
+        int area;
+        
+        coordinates = input.getCoordinatesFromInput();
+        area = countIntersectionArea(coordinates);
 
-        // int ax1 = 0;
-        // int ay1 = 1;
-
-        // int ax2 = 2;
-        // int ay2 = 3;
-
-        // int bx1 = 4;
-        // int by1 = 5;
-
-        // int bx2 = 6;
-        // int by2 = 7;
-
-
-
-        commonSideX = calculateIntersectionLength(coordinates[0],coordinates[2],coordinates[4],coordinates[6]);
-        commonSideY = calculateIntersectionLength(coordinates[1],coordinates[3],coordinates[5],coordinates[7]);
-
-        System.out.println(commonSideY * commonSideX + " dddd");
-
+        if (area == 0){
+            System.out.println("Theese rectangles have no overlapping area.");
+        }
+        else{
+            System.out.println("Overlapping area = " + area);
+        }
     }
 
 
-    private Integer calculateIntersectionLength(Integer a, Integer b, Integer c, Integer d){
+    private int countIntersectionArea(int[] coordinates){
+        int commonSideY, commonSideX, area;
+        commonSideX = calculateSideLength(coordinates[0],coordinates[2],coordinates[4],coordinates[6]);
+        commonSideY = calculateSideLength(coordinates[1],coordinates[3],coordinates[5],coordinates[7]);
+        area = commonSideX * commonSideY;
+        return area;
+    }
 
+
+    private List<Integer> findCommonCoordinates(List<Integer> firstRectSide, List<Integer> secondRectSide){
+        List<Integer> commons = new ArrayList<Integer>();
+
+        for (Integer pointFromfirstRectSide : firstRectSide) {
+            for(Integer pointFromsecondRectSide : secondRectSide){
+                if (pointFromfirstRectSide == pointFromsecondRectSide) {
+                    commons.add(pointFromfirstRectSide);
+                }
+            }
+        }
+        return commons;
+    }
+
+
+    private Integer calculateSideLength(Integer a, Integer b, Integer c, Integer d){
 
         List<Integer> firstRectSide = new ArrayList<>();
         List<Integer> secondRectSide = new ArrayList<>();
@@ -59,23 +72,12 @@ public class Application {
             secondRectSide.add(element);
         }
         
-        for (Integer pointFromfirstRectSide : firstRectSide) {
-            for(Integer pointFromsecondRectSide : secondRectSide){
-                if (pointFromfirstRectSide == pointFromsecondRectSide) {
-                    commons.add(pointFromfirstRectSide);
-                }
-            }
-        }
+        commons = findCommonCoordinates(firstRectSide, secondRectSide);
 
         if (commons.isEmpty()){
             return commons.size();
         }
-        else{
-            return commons.size()-1;
-        }
 
-        
-
-        
+        return commons.size()-1;
     }
 }
