@@ -6,32 +6,35 @@ import java.util.Collection;
  * Application
  */
 public class Application {
+    DataInput input = new DataInput();
+
 
     public static void main(String[] args) {
         Application app = new Application();
-        DataInput input = new DataInput();
-        input.getCoordinatesFromInput();
-        //app.calculate();
+        
+        app.calculate();
     }
 
     public void calculate(){
+        int[] coordinates = input.getCoordinatesFromInput();
+        int commonSideY, commonSideX;
 
-        int ax1 = 2;
-        int ay1 = 5;
+        // int ax1 = 0;
+        // int ay1 = 1;
 
-        int ax2 = 5;
-        int ay2 = 9;
+        // int ax2 = 2;
+        // int ay2 = 3;
 
-        int bx1 = -3;
-        int by1 = 2;
+        // int bx1 = 4;
+        // int by1 = 5;
 
-        int bx2 = 8;
-        int by2 = 11;
+        // int bx2 = 6;
+        // int by2 = 7;
 
 
 
-        Integer commonSideX = calculateIntersectionLength(ax1,ax2,bx1,bx2);
-        Integer commonSideY = calculateIntersectionLength(ay1,ay2,by1,by2);
+        commonSideX = calculateIntersectionLength(coordinates[0],coordinates[2],coordinates[4],coordinates[6]);
+        commonSideY = calculateIntersectionLength(coordinates[1],coordinates[3],coordinates[5],coordinates[7]);
         System.out.println(commonSideX + " X");
         System.out.println(commonSideY + " Y");
 
@@ -41,7 +44,6 @@ public class Application {
 
 
     private Integer calculateIntersectionLength(Integer a, Integer b, Integer c, Integer d){
-                                                //   5,         -2          8,           2
 
 
         List<Integer> firstRectSide = new ArrayList<>();
