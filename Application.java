@@ -9,7 +9,9 @@ public class Application {
 
     public static void main(String[] args) {
         Application app = new Application();
-        app.calculate();
+        DataInput input = new DataInput();
+        input.getCoordinatesFromInput();
+        //app.calculate();
     }
 
     public void calculate(){
