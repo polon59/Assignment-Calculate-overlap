@@ -23,10 +23,6 @@ public class DataInput {
 
     private void splitUsersCoordinates(){
         splittedUsersCoordinates = usersCoordinates.split(",");
-
-        for (String element : splittedUsersCoordinates){
-            System.out.println(element);
-        }
     }
 
     private void convertUsersCoordinatesToInt(){
@@ -36,8 +32,5 @@ public class DataInput {
             convertedCoordinates[i] = Integer.valueOf(splittedUsersCoordinates[i]);
         }
 
-        for (int number : convertedCoordinates){
-            System.out.println(number);
-        }
     }
 }

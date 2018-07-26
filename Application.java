@@ -5,6 +5,8 @@ import java.util.Collection;
 /**
  * Application
  * -1,-1,10,10,-1,0,3,9
+ * 
+ * -12,-4,-1,-2,0,0,100,3000
  */
 public class Application {
     DataInput input = new DataInput();
