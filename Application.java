@@ -4,6 +4,7 @@ import java.util.Collection;
 
 /**
  * Application
+ * -1,-1,10,10,-1,0,3,9
  */
 public class Application {
     DataInput input = new DataInput();
@@ -35,8 +36,6 @@ public class Application {
 
         commonSideX = calculateIntersectionLength(coordinates[0],coordinates[2],coordinates[4],coordinates[6]);
         commonSideY = calculateIntersectionLength(coordinates[1],coordinates[3],coordinates[5],coordinates[7]);
-        System.out.println(commonSideX + " X");
-        System.out.println(commonSideY + " Y");
 
         System.out.println(commonSideY * commonSideX + " dddd");
 
@@ -50,16 +49,12 @@ public class Application {
         List<Integer> secondRectSide = new ArrayList<>();
         List<Integer> commons = new ArrayList<Integer>();
 
-        System.out.println("FIRST");
         for(int element = a; element<=b; element++){
             firstRectSide.add(element);
-            System.out.println(element);
         }
 
-        System.out.println("SECOND");
         for(int element = c; element<=d; element++){
             secondRectSide.add(element);
-            System.out.println(element);
         }
         
         for (Integer pointFromfirstRectSide : firstRectSide) {
