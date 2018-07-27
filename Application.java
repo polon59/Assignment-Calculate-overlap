@@ -10,14 +10,13 @@ import java.util.Collection;
  */
 public class Application {
     DataInput input = new DataInput();
-    
 
 
-    public static void main(String[] args) {
-        Application app = new Application();
+
+    public void launchMainMenu() {
         
-        app.handleApplication();
     }
+    
 
     public void handleApplication(){
         int[] coordinates;
