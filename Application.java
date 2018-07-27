@@ -14,17 +14,35 @@ public class Application {
 
 
     public void launchMainMenu() {
+        int currentOption = Integer.MAX_VALUE;
+
+        while (currentOption != 0) {
+            System.out.println("1 - perform calc,, 2 - test, 0 - exit");
+            switch (currentOption) {
+                case 1:
+                    performCalculation();
+                    break;
+
+                case 2:
+                    
+                    break;
+            
+                default:
+                    break;
+            }
+        }
         
     }
-    
 
-    public void handleApplication(){
-        int[] coordinates;
+    private void performCalculation(){
         int area;
-        
-        coordinates = input.getCoordinatesFromInput();
+        int[] coordinates = input.getCoordinatesFromInput();
         area = countIntersectionArea(coordinates);
+        checkIfOverlap(area);
+    }
 
+
+    private void checkIfOverlap(int area) {
         if (area == 0){
             System.out.println("Theese rectangles have no overlapping area.");
         }
