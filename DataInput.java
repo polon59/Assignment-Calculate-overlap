@@ -14,8 +14,10 @@ public class DataInput {
 
         Scanner input = new Scanner(System.in);
         usersCoordinates = input.next();
+        
         splitUsersCoordinates();
         convertUsersCoordinatesToInt();
+
 
         return convertedCoordinates;
     }
@@ -42,7 +44,9 @@ public class DataInput {
         Scanner usersChoice = new Scanner(System.in);
         // use class wiew
         System.out.println("Select option");
+
         int option = usersChoice.nextInt();
+        usersChoice.nextLine();
 
         return option;
     }
