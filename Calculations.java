@@ -7,7 +7,7 @@ import java.util.Collection;
  */
 public class Calculations {
 
-    private void checkIfOverlap(int area) {
+    public void checkIfOverlap(int area) {
         if (area == 0){
             System.out.println("Theese rectangles have no overlapping area.");
         }
@@ -17,7 +17,7 @@ public class Calculations {
     }
 
 
-    private int countIntersectionArea(int[] coordinates){
+    public int countIntersectionArea(int[] coordinates){
         int commonSideY, commonSideX, area;
         commonSideX = calculateSideLength(coordinates[0],coordinates[2],coordinates[4],coordinates[6]);
         commonSideY = calculateSideLength(coordinates[1],coordinates[3],coordinates[5],coordinates[7]);
