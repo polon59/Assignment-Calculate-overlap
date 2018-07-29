@@ -33,13 +33,6 @@ public class ShapeDrawer {
             coordinate--;
         }
     }
-    
-
-    // public static void main(String[] args) {
-    //     ShapeDrawer shapeDrawer = new ShapeDrawer();
-    //     int[] sampleCoordinates = {-12,-12,12,12,-1,0,3,9};
-    //     shapeDrawer.drawShapes(sampleCoordinates);
-    // }
 
 
     private int createYIndexByCoordinate(int coordinate){
@@ -124,6 +117,7 @@ public class ShapeDrawer {
         }
     }
 
+
     private String createIcon(int index, boolean reverse){
         String[] coordinatesIcons = {" ⑫"," ⑪"," ⑩"," ⓽"," ⓼"," ⓻"," ⓺"," ⓹"," ⓸"," ⓷"," ⓶"," ⓵"," ⓪","-⓵","-⓶","-⓷","-⓸","-⓹","-⓺","-⓻","-⓼","-⓽","-⑩","-⑪","-⑫"};
         if (reverse){
@@ -157,8 +151,7 @@ public class ShapeDrawer {
     }
 
 
-
-    public void createCoordinateSystem(){
+    private void createCoordinateSystem(){
 
         for (int yIndex = 0; yIndex < coordinateSystem.length; yIndex++){
             for (int xIndex = 0; xIndex<coordinateSystem[yIndex].length; xIndex++){
@@ -167,7 +160,8 @@ public class ShapeDrawer {
         }
     }
 
-    public void printCoordinateSystem(){
+
+    private void printCoordinateSystem(){
         for (int yIndex = 0; yIndex < coordinateSystem.length; yIndex++){
             for (int xIndex = 0; xIndex<coordinateSystem[yIndex].length; xIndex++){
                 System.out.print(coordinateSystem[yIndex][xIndex]);
