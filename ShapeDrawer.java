@@ -45,7 +45,7 @@ public class ShapeDrawer {
 
     public static void main(String[] args) {
         ShapeDrawer shapeDrawer = new ShapeDrawer();
-        int[] sampleCoordinates = {-2,-2,-4,-4,-1,0,3,9};
+        int[] sampleCoordinates = {2,2,4,5,-2,-2,-4,-4};
         shapeDrawer.drawShapes(sampleCoordinates);
 
 
@@ -61,7 +61,7 @@ public class ShapeDrawer {
         int[] secondSquare = {coordinates[4],coordinates[5],coordinates[6],coordinates[7]};
         createCoordinateSystem();
         drawSingleShape(firstSquare);
-        //drawSingleShape(secondSquare);
+        drawSingleShape(secondSquare);
         printCoordinateSystem();
     }
 
@@ -73,10 +73,25 @@ public class ShapeDrawer {
         minY = createYIndexByCoordinate(shapeCoordinates[1]);
         maxY = createYIndexByCoordinate(shapeCoordinates[3]);
 
-        coordinateSystem[minY][minX] = "─┐";
-        coordinateSystem[maxY][maxX] = " └";
-        coordinateSystem[maxY][minX] = "─┘";
-        coordinateSystem[minY][maxX] = " ┌";
+        if (maxY > 12){
+            coordinateSystem[minY][minX] = "─┐";
+            coordinateSystem[maxY][maxX] = " └";
+            coordinateSystem[maxY][minX] = "─┘";
+            coordinateSystem[minY][maxX] = " ┌";
+        }
+
+        else{
+            coordinateSystem[minY][minX] = " └";
+            coordinateSystem[maxY][maxX] = "─┐";
+            coordinateSystem[maxY][minX] = " ┌";
+            coordinateSystem[minY][maxX] = "─┘";
+        }
+        
+        
+        // coordinateSystem[minY][minX] = " +";
+        // coordinateSystem[maxY][maxX] = "─+";
+        // coordinateSystem[maxY][minX] = " +";
+        // coordinateSystem[minY][maxX] = "─+";
 
         for (int yIndex = 0; yIndex < coordinateSystem.length; yIndex++){
             for (int xIndex = 0; xIndex<coordinateSystem[yIndex].length; xIndex++){
@@ -85,6 +100,12 @@ public class ShapeDrawer {
                 }
                 else if((xIndex == maxX && yIndex < maxY && yIndex > minY )|| (xIndex == minX && yIndex < maxY && yIndex > minY)){
                     coordinateSystem[yIndex][xIndex] = " │";
+                }
+                else if((xIndex == maxX && yIndex > maxY && yIndex < minY )|| (xIndex == minX && yIndex > maxY && yIndex < minY)){
+                    coordinateSystem[yIndex][xIndex] = " │";
+                }
+                else if((yIndex == maxY && xIndex < maxX && xIndex > minX )|| (yIndex == minY && xIndex < maxX && xIndex > minX)){
+                    coordinateSystem[yIndex][xIndex] = "──";
                 }
 
             }
