@@ -7,6 +7,7 @@ public class ShapeDrawer {
     private final String ANSI_RESET;
     private final String ANSI_RED;
     private final String ANSI_GREEN;
+    private final String ANSI_BLACK;
 
 
     public ShapeDrawer(){
@@ -15,6 +16,7 @@ public class ShapeDrawer {
         ANSI_RESET = "\u001B[0m";
         ANSI_RED = "\u001B[31m";
         ANSI_GREEN = "\u001B[32m";
+        ANSI_BLACK = "\u001B[30m";
         createIndexesMap();        
     }
     
@@ -139,7 +141,7 @@ public class ShapeDrawer {
             currentSquareValue = createIcon(yIndex,false);     
         }
         else{
-            currentSquareValue = "  ";
+            currentSquareValue = ANSI_BLACK + "|_" + ANSI_RESET;
         }
 
 
