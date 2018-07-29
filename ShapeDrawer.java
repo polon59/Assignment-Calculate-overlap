@@ -6,114 +6,122 @@ import java.util.Map;
  */
 
 public class ShapeDrawer {
-    String[][] coordinateSystem = new String[25][25];
-    Map<Integer,Integer> indexes = createIndexesMap();
+    private String[][] coordinateSystem;
+    private Map<Integer,Integer> indexes;
+    private final String ANSI_RESET;
+    private final String ANSI_RED;
+    private final String ANSI_GREEN;
 
 
+    public ShapeDrawer(){
+        coordinateSystem = new String[25][25];
+        indexes = new HashMap<>();
+        ANSI_RESET = "\u001B[0m";
+        ANSI_RED = "\u001B[31m";
+        ANSI_GREEN = "\u001B[32m";
+        createIndexesMap();        
+    }
+    
 
+    private void createIndexesMap(){
+        int index = 0;
+        int coordinate = 12;
 
-    private Map<Integer,Integer> createIndexesMap(){
-        Map<Integer,Integer> indexes = new HashMap<>();
-        indexes.put(12, 0);
-        indexes.put(11, 1);
-        indexes.put(10, 2);
-        indexes.put(9, 3);
-        indexes.put(8, 4);
-        indexes.put(7, 5);
-        indexes.put(6, 6);
-        indexes.put(5, 7);
-        indexes.put(4, 8);
-        indexes.put(3, 9);
-        indexes.put(2, 10);
-        indexes.put(1, 11);
-        indexes.put(0, 12);
-        indexes.put(-1, 13);
-        indexes.put(-2, 14);
-        indexes.put(-3, 15);
-        indexes.put(-4, 16);
-        indexes.put(-5, 17);
-        indexes.put(-6, 18);
-        indexes.put(-7, 19);
-        indexes.put(-8, 20);
-        indexes.put(-9, 21);
-        indexes.put(-10, 22);
-        indexes.put(-11, 23);
-        indexes.put(-12, 24);
-        return indexes;
+        while (index <= 25){
+            indexes.put(coordinate, index);
+            index++;
+            coordinate--;
+        }
     }
     
 
     public static void main(String[] args) {
         ShapeDrawer shapeDrawer = new ShapeDrawer();
-        int[] sampleCoordinates = {-1,-1,10,10,-1,0,3,9};
+        int[] sampleCoordinates = {-12,-12,12,12,-1,0,3,9};
         shapeDrawer.drawShapes(sampleCoordinates);
-
-
     }
 
-    public int createYIndexByCoordinate(int coordinate){
 
+    private int createYIndexByCoordinate(int coordinate){
         return indexes.get(coordinate);
     }
 
-    public void drawShapes(int[] coordinates){
-        int[] firstSquare = {coordinates[0],coordinates[1],coordinates[2],coordinates[3]};
-        int[] secondSquare = {coordinates[4],coordinates[5],coordinates[6],coordinates[7]};
-        createCoordinateSystem();
-        drawSingleShape(firstSquare);
-        drawSingleShape(secondSquare);
-        printCoordinateSystem();
+
+    private boolean checkIfPossibleToDraw(int[]coordinates){
+        boolean possible = true;
+
+        for (int coordinate : coordinates){
+            if (coordinate >12 || coordinate < -12) {
+                possible = false;
+            }
+        }
+        return possible;
     }
 
 
-    private void drawSingleShape(int[] shapeCoordinates){
+    public void drawShapes(int[] coordinates){
+        if (checkIfPossibleToDraw(coordinates)) {
+            int[] firstSquare = {coordinates[0],coordinates[1],coordinates[2],coordinates[3]};
+            int[] secondSquare = {coordinates[4],coordinates[5],coordinates[6],coordinates[7]};
+            createCoordinateSystem();
+            drawSingleShape(firstSquare,1);
+            drawSingleShape(secondSquare,2);
+            printCoordinateSystem();
+        }
+        else{
+            System.out.println("I cannot draw shapes with theese coordinates. (max val = 12, min val = -12)");
+        }
+    }
+
+
+    private void drawSingleShape(int[] shapeCoordinates, int colorID){
         int minX, minY, maxX, maxY;
+        String color;
+
+        if (colorID == 1){
+            color = ANSI_GREEN;
+        }
+        else{
+            color = ANSI_RED;
+        }
+
         minX = shapeCoordinates[0]+12;
         maxX = shapeCoordinates[2]+12;
         minY = createYIndexByCoordinate(shapeCoordinates[1]);
         maxY = createYIndexByCoordinate(shapeCoordinates[3]);
 
         if (maxY > 12){
-            coordinateSystem[minY][minX] = "─┐";
-            coordinateSystem[maxY][maxX] = " └";
-            coordinateSystem[maxY][minX] = "─┘";
-            coordinateSystem[minY][maxX] = " ┌";
+            coordinateSystem[minY][minX] = color+"─┐"+ANSI_RESET;
+            coordinateSystem[maxY][maxX] = color+" └"+ANSI_RESET;
+            coordinateSystem[maxY][minX] = color+"─┘"+ANSI_RESET;
+            coordinateSystem[minY][maxX] = color+" ┌"+ANSI_RESET;
         }
 
         else{
-            coordinateSystem[minY][minX] = " └";
-            coordinateSystem[maxY][maxX] = "─┐";
-            coordinateSystem[maxY][minX] = " ┌";
-            coordinateSystem[minY][maxX] = "─┘";
+            coordinateSystem[minY][minX] = color+" └"+ANSI_RESET;
+            coordinateSystem[maxY][maxX] = color+"─┐"+ANSI_RESET;
+            coordinateSystem[maxY][minX] = color+" ┌"+ANSI_RESET;
+            coordinateSystem[minY][maxX] = color+"─┘"+ANSI_RESET;
         }
-        
-        
-        // coordinateSystem[minY][minX] = " +";
-        // coordinateSystem[maxY][maxX] = "─+";
-        // coordinateSystem[maxY][minX] = " +";
-        // coordinateSystem[minY][maxX] = "─+";
 
         for (int yIndex = 0; yIndex < coordinateSystem.length; yIndex++){
             for (int xIndex = 0; xIndex<coordinateSystem[yIndex].length; xIndex++){
                 if(yIndex != 12 && xIndex != 12){
                     if((yIndex == maxY && xIndex > maxX && xIndex < minX )|| (yIndex == minY && xIndex > maxX && xIndex < minX)){
-                        coordinateSystem[yIndex][xIndex] = "──";
+                        coordinateSystem[yIndex][xIndex] = color+"──"+ANSI_RESET;
                     }
                     else if((xIndex == maxX && yIndex < maxY && yIndex > minY )|| (xIndex == minX && yIndex < maxY && yIndex > minY)){
-                        coordinateSystem[yIndex][xIndex] = " │";
+                        coordinateSystem[yIndex][xIndex] = color+" │"+ANSI_RESET;
                     }
                     else if((xIndex == maxX && yIndex > maxY && yIndex < minY )|| (xIndex == minX && yIndex > maxY && yIndex < minY)){
-                        coordinateSystem[yIndex][xIndex] = " │";
+                        coordinateSystem[yIndex][xIndex] = color+" │"+ANSI_RESET;
                     }
                     else if((yIndex == maxY && xIndex < maxX && xIndex > minX )|| (yIndex == minY && xIndex < maxX && xIndex > minX)){
-                        coordinateSystem[yIndex][xIndex] = "──";
+                        coordinateSystem[yIndex][xIndex] = color+"──"+ANSI_RESET;
                     }
                 }
-
             }
         }
-
-
     }
 
     private String createIcon(int index, boolean reverse){
