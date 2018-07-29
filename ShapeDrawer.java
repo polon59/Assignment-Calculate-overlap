@@ -45,7 +45,7 @@ public class ShapeDrawer {
 
     public static void main(String[] args) {
         ShapeDrawer shapeDrawer = new ShapeDrawer();
-        int[] sampleCoordinates = {2,2,4,5,-2,-2,-4,-4};
+        int[] sampleCoordinates = {-1,-1,10,10,-1,0,3,9};
         shapeDrawer.drawShapes(sampleCoordinates);
 
 
@@ -95,23 +95,24 @@ public class ShapeDrawer {
 
         for (int yIndex = 0; yIndex < coordinateSystem.length; yIndex++){
             for (int xIndex = 0; xIndex<coordinateSystem[yIndex].length; xIndex++){
-                if((yIndex == maxY && xIndex > maxX && xIndex < minX )|| (yIndex == minY && xIndex > maxX && xIndex < minX)){
-                    coordinateSystem[yIndex][xIndex] = "──";
-                }
-                else if((xIndex == maxX && yIndex < maxY && yIndex > minY )|| (xIndex == minX && yIndex < maxY && yIndex > minY)){
-                    coordinateSystem[yIndex][xIndex] = " │";
-                }
-                else if((xIndex == maxX && yIndex > maxY && yIndex < minY )|| (xIndex == minX && yIndex > maxY && yIndex < minY)){
-                    coordinateSystem[yIndex][xIndex] = " │";
-                }
-                else if((yIndex == maxY && xIndex < maxX && xIndex > minX )|| (yIndex == minY && xIndex < maxX && xIndex > minX)){
-                    coordinateSystem[yIndex][xIndex] = "──";
+                if(yIndex != 12 && xIndex != 12){
+                    if((yIndex == maxY && xIndex > maxX && xIndex < minX )|| (yIndex == minY && xIndex > maxX && xIndex < minX)){
+                        coordinateSystem[yIndex][xIndex] = "──";
+                    }
+                    else if((xIndex == maxX && yIndex < maxY && yIndex > minY )|| (xIndex == minX && yIndex < maxY && yIndex > minY)){
+                        coordinateSystem[yIndex][xIndex] = " │";
+                    }
+                    else if((xIndex == maxX && yIndex > maxY && yIndex < minY )|| (xIndex == minX && yIndex > maxY && yIndex < minY)){
+                        coordinateSystem[yIndex][xIndex] = " │";
+                    }
+                    else if((yIndex == maxY && xIndex < maxX && xIndex > minX )|| (yIndex == minY && xIndex < maxX && xIndex > minX)){
+                        coordinateSystem[yIndex][xIndex] = "──";
+                    }
                 }
 
             }
         }
-        System.out.println(maxX);
-        System.out.println(maxY);
+
 
     }
 
