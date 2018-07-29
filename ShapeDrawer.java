@@ -35,11 +35,11 @@ public class ShapeDrawer {
     }
     
 
-    public static void main(String[] args) {
-        ShapeDrawer shapeDrawer = new ShapeDrawer();
-        int[] sampleCoordinates = {-12,-12,12,12,-1,0,3,9};
-        shapeDrawer.drawShapes(sampleCoordinates);
-    }
+    // public static void main(String[] args) {
+    //     ShapeDrawer shapeDrawer = new ShapeDrawer();
+    //     int[] sampleCoordinates = {-12,-12,12,12,-1,0,3,9};
+    //     shapeDrawer.drawShapes(sampleCoordinates);
+    // }
 
 
     private int createYIndexByCoordinate(int coordinate){
