@@ -13,12 +13,14 @@ public class Application {
     private DataInput input;
     private Calculations calculations;
     private ShapeDrawer shapeDrawer;
+    private Tests test;
 
 
     public Application(){
         input = new DataInput();
         calculations = new Calculations();
         shapeDrawer = new ShapeDrawer();
+        test = new Tests(calculations);
     }
 
 
@@ -36,7 +38,7 @@ public class Application {
                     break;
 
                 case 2:
-                    
+                    test.handleTests();
                     break;
             
                 default:

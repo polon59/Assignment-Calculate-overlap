@@ -1,10 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * ShapeDrawer
- */
-
 public class ShapeDrawer {
     private String[][] coordinateSystem;
     private Map<Integer,Integer> indexes;
