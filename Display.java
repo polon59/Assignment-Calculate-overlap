@@ -2,6 +2,7 @@
 public class Display {
 
     private String[] coordinatesDisplay;
+    StringBuilder squareImage;
     private int[] coordinatesValues;
     private final String ANSI_RESET;
     private final String ANSI_BLACK;
@@ -12,6 +13,7 @@ public class Display {
     
     public Display(){
         coordinatesDisplay = new String[8];
+        squareImage = new StringBuilder();
         ANSI_RESET = "\u001B[0m";
         ANSI_BLACK = "\u001B[30m";
         ANSI_RED = "\u001B[31m";
@@ -22,18 +24,14 @@ public class Display {
     }
 
 
-    private void setInitialCoordinatesValues(){
+    public void setInitialCoordinatesValues(){
         int i = 0;
 
         while(i < coordinatesDisplay.length){
             coordinatesDisplay[i] = ANSI_BLACK + "-- " + ANSI_RESET;
             i++;
-
-            // if (i<7){
-            //     coordinatesDisplay[i] = ANSI_BLACK + "y =    " + ANSI_RESET;
-            // }
-            
         }
+        
     }
 
     private void resetIndexesColors(int currentIndex){
@@ -56,13 +54,7 @@ public class Display {
     }
 
 
-    public void displayCoordinatesImage(int currentIndex, int[] convertedCoordinates){
-        StringBuilder squareImage = new StringBuilder();
-        this.coordinatesValues = convertedCoordinates;
-        resetIndexesColors(currentIndex);
-        coordinatesDisplay[currentIndex] = ANSI_CYAN + "__" + ANSI_RESET;
-        System.out.println("Current " + currentIndex);
-
+    private void displayFirstSquare(){
         squareImage.append("                   ");
         squareImage.append(coordinatesDisplay[2]);
         squareImage.append(ANSI_BLACK + "," + ANSI_RESET);
@@ -79,7 +71,9 @@ public class Display {
         squareImage.append(ANSI_BLACK + "," + ANSI_RESET);
         squareImage.append(coordinatesDisplay[1]);
         squareImage.append("\n\n\n");
+    }
 
+    private void displaySecondSquare(){
         squareImage.append("                   ");
         squareImage.append(coordinatesDisplay[6]);
         squareImage.append(ANSI_BLACK + "," + ANSI_RESET);
@@ -96,10 +90,28 @@ public class Display {
         squareImage.append(coordinatesDisplay[4]);
         squareImage.append(ANSI_BLACK + "," + ANSI_RESET);
         squareImage.append(coordinatesDisplay[5]);
-
-        System.out.print("\033[H\033[2J");
-        System.out.println(squareImage.toString());
-        
-
     }
+
+
+    public void displayCoordinatesImage(int currentIndex, int[] convertedCoordinates){
+        this.coordinatesValues = convertedCoordinates;
+        resetIndexesColors(currentIndex);
+        coordinatesDisplay[currentIndex] = ANSI_CYAN + "__" + ANSI_RESET;
+        displayFirstSquare();
+        displaySecondSquare();
+
+        clearScreen();
+        System.out.println(squareImage.toString());
+        squareImage.setLength(0);
+
+        if (currentIndex == 7){
+            setInitialCoordinatesValues();
+        }
+    }
+
+    public static void clearScreen(){
+        System.out.print("\033[H\033[2J"); 
+    }
+
+
 }
