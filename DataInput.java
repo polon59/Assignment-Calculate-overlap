@@ -10,9 +10,11 @@ public class DataInput {
     private int[] convertedCoordinates;
     private String[] splittedUsersCoordinates;
     private String usersCoordinates;
+    private Display display;
 
     public DataInput(){
         convertedCoordinates = new int[8];
+        display = new Display();
     }
 
     public int[] getCoordinatesFromInput() throws NumberFormatException{
@@ -64,7 +66,7 @@ public class DataInput {
 
         while (validCoordinates != convertedCoordinates.length) {
                 
-                System.out.println("Enter coordinate");
+                display.displayCoordinatesImage(validCoordinates,convertedCoordinates);
             try {
                 convertedCoordinates[validCoordinates] = input.nextInt();
             } catch (InputMismatchException e) {
@@ -73,7 +75,6 @@ public class DataInput {
                 continue;
             }
             validCoordinates++;
-            
             
         }
         
