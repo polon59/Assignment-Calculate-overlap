@@ -62,15 +62,19 @@ public class DataInput {
         Scanner input = new Scanner(System.in);
         int validCoordinates = 0;
 
-        while (validCoordinates < convertedCoordinates.length) {
-
+        while (validCoordinates != convertedCoordinates.length) {
+                
+                System.out.println("Enter coordinate");
             try {
                 convertedCoordinates[validCoordinates] = input.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("It must be a number!");
+                input.next();
                 continue;
             }
             validCoordinates++;
+            
+            
         }
         
         return convertedCoordinates;
