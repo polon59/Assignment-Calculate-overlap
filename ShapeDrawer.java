@@ -160,6 +160,7 @@ public class ShapeDrawer {
 
 
     private void printCoordinateSystem(){
+        Display.clearScreen(); 
         for (int yIndex = 0; yIndex < coordinateSystem.length; yIndex++){
             for (int xIndex = 0; xIndex<coordinateSystem[yIndex].length; xIndex++){
                 System.out.print(coordinateSystem[yIndex][xIndex]);
