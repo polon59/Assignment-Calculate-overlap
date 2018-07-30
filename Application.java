@@ -14,9 +14,11 @@ public class Application {
     private Calculations calculations;
     private ShapeDrawer shapeDrawer;
     private Tests test;
+    private String mode;
 
 
-    public Application(){
+    public Application(String mode){
+        this.mode = mode;
         input = new DataInput();
         calculations = new Calculations();
         shapeDrawer = new ShapeDrawer();
@@ -29,7 +31,13 @@ public class Application {
 
         while (currentOption != 0) {
 
-            System.out.println("1 - perform calc,, 2 - test, 0 - exit");
+            System.out.println("1 - perform calc., 2 - test, 0 - exit");
+            if (mode == "adv"){
+                System.out.println("advanced mode");
+            }else{
+                System.out.println("auto mode");
+            }
+            
             currentOption = input.getOptionNumber();
 
             switch (currentOption) {
@@ -52,10 +60,16 @@ public class Application {
 
     private void performCalculation(){
         int area;
-        int[] coordinates = input.getCoordinatesFromInput();
-        area = calculations.countIntersectionArea(coordinates);
-        shapeDrawer.drawShapes(coordinates);
-        calculations.checkIfOverlap(area);
+        int[] coordinates;
+
+        try {
+            coordinates = input.getCoordinatesFromInput();
+            area = calculations.countIntersectionArea(coordinates);
+            shapeDrawer.drawShapes(coordinates);
+            calculations.checkIfOverlap(area);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid data format");
+        }
     }
 
 

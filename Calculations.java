@@ -14,6 +14,7 @@ public class Calculations {
         else{
             System.out.println("Overlapping area = " + area);
         }
+        System.out.println("\n\n");
     }
 
 

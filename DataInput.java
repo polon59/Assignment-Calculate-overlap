@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.InputMismatchException;
+import java.lang.NumberFormatException;
 
 /**
  * DataInput
@@ -10,7 +12,7 @@ public class DataInput {
     private String usersCoordinates;
 
 
-    public int[] getCoordinatesFromInput(){
+    public int[] getCoordinatesFromInput() throws NumberFormatException{
 
         Scanner input = new Scanner(System.in);
         usersCoordinates = input.next();
@@ -29,7 +31,7 @@ public class DataInput {
     }
 
 
-    private void convertUsersCoordinatesToInt(){
+    private void convertUsersCoordinatesToInt() throws NumberFormatException{
 
         convertedCoordinates = new int[8];
 
@@ -44,9 +46,14 @@ public class DataInput {
         Scanner usersChoice = new Scanner(System.in);
         // use class wiew
         System.out.println("Select option");
+        int option = Integer.MAX_VALUE;
 
-        int option = usersChoice.nextInt();
-        usersChoice.nextLine();
+        try {
+            option = usersChoice.nextInt();
+            usersChoice.nextLine();
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input");
+        }
 
         return option;
     }
