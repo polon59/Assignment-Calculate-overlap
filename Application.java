@@ -37,7 +37,7 @@ public class Application {
             }else{
                 System.out.println("auto mode");
             }
-            
+
             currentOption = input.getOptionNumber();
 
             switch (currentOption) {
@@ -63,7 +63,13 @@ public class Application {
         int[] coordinates;
 
         try {
-            coordinates = input.getCoordinatesFromInput();
+            if (mode == "auto"){
+                coordinates = input.getCoordinatesFromInput();
+            }
+            else{
+                coordinates = input.getAdvancedInput();
+            }
+            
             area = calculations.countIntersectionArea(coordinates);
             shapeDrawer.drawShapes(coordinates);
             calculations.checkIfOverlap(area);
