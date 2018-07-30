@@ -59,7 +59,6 @@ public class Display {
     public void displayCoordinatesImage(int currentIndex, int[] convertedCoordinates){
         StringBuilder squareImage = new StringBuilder();
         this.coordinatesValues = convertedCoordinates;
-        String color = ANSI_GREEN;
         resetIndexesColors(currentIndex);
         coordinatesDisplay[currentIndex] = ANSI_CYAN + "__" + ANSI_RESET;
         System.out.println("Current " + currentIndex);
@@ -69,7 +68,7 @@ public class Display {
         squareImage.append(ANSI_BLACK + "," + ANSI_RESET);
         squareImage.append(coordinatesDisplay[3]);
         squareImage.append("\n");
-        squareImage.append(color);
+        squareImage.append(ANSI_GREEN);
         squareImage.append("   ┌────────────────────┐\n");
         squareImage.append("   │                    │\n   │                    │\n");
         squareImage.append("   │                    │\n   │                    │\n");
@@ -79,7 +78,26 @@ public class Display {
         squareImage.append(coordinatesDisplay[0]);
         squareImage.append(ANSI_BLACK + "," + ANSI_RESET);
         squareImage.append(coordinatesDisplay[1]);
+        squareImage.append("\n\n\n");
 
+        squareImage.append("                   ");
+        squareImage.append(coordinatesDisplay[6]);
+        squareImage.append(ANSI_BLACK + "," + ANSI_RESET);
+        squareImage.append(coordinatesDisplay[7]);
+        squareImage.append("\n");
+        squareImage.append(ANSI_RED);
+        squareImage.append("   ┌────────────────────┐\n");
+        squareImage.append("   │                    │\n   │                    │\n");
+        squareImage.append("   │                    │\n   │                    │\n");
+        squareImage.append("   │                    │\n   │                    │\n");
+        squareImage.append("   └────────────────────┘\n ");
+        squareImage.append(ANSI_RESET);
+        squareImage.append("  ");
+        squareImage.append(coordinatesDisplay[4]);
+        squareImage.append(ANSI_BLACK + "," + ANSI_RESET);
+        squareImage.append(coordinatesDisplay[5]);
+
+        System.out.print("\033[H\033[2J");
         System.out.println(squareImage.toString());
         
 
