@@ -65,7 +65,6 @@ public class DataInput {
         int validCoordinates = 0;
 
         while (validCoordinates != convertedCoordinates.length) {
-                
                 display.displayCoordinatesImage(validCoordinates,convertedCoordinates);
             try {
                 convertedCoordinates[validCoordinates] = input.nextInt();
