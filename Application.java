@@ -42,12 +42,12 @@ public class Application {
 
             switch (currentOption) {
                 case 1:
-                    System.out.print("\033[H\033[2J");  
+                    Display.clearScreen(); 
                     performCalculation();
                     break;
 
                 case 2:
-                    System.out.print("\033[H\033[2J");  
+                    Display.clearScreen();
                     test.handleTests();
                     break;
             
