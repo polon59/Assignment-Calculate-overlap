@@ -11,6 +11,9 @@ public class DataInput {
     private String[] splittedUsersCoordinates;
     private String usersCoordinates;
 
+    public DataInput(){
+        convertedCoordinates = new int[8];
+    }
 
     public int[] getCoordinatesFromInput() throws NumberFormatException{
 
@@ -20,20 +23,17 @@ public class DataInput {
         splitUsersCoordinates();
         convertUsersCoordinatesToInt();
 
-
         return convertedCoordinates;
     }
 
 
     private void splitUsersCoordinates(){
-
         splittedUsersCoordinates = usersCoordinates.split(",");
     }
 
 
     private void convertUsersCoordinatesToInt() throws NumberFormatException{
-
-        convertedCoordinates = new int[8];
+        
 
         for (int i = 0; i < splittedUsersCoordinates.length; i++){
             convertedCoordinates[i] = Integer.valueOf(splittedUsersCoordinates[i]);
@@ -56,5 +56,23 @@ public class DataInput {
         }
 
         return option;
+    }
+
+    public int[] getAdvancedInput(){
+        Scanner input = new Scanner(System.in);
+        int validCoordinates = 0;
+
+        while (validCoordinates < convertedCoordinates.length) {
+
+            try {
+                convertedCoordinates[validCoordinates] = input.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("It must be a number!");
+                continue;
+            }
+            validCoordinates++;
+        }
+        
+        return convertedCoordinates;
     }
 }
