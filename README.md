@@ -1,4 +1,4 @@
-# Assignment-Calculate-overlap
+## Assignment-Calculate-overlap
 Program which calculates overlapping area of two rectangles.
 Parameters of the method are coordinates of bottom-left and top-right corners of both rectangles.
 
