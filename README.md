@@ -3,7 +3,8 @@ Program which calculates overlapping area of two rectangles.
 Parameters of the method are coordinates of bottom-left and top-right corners of both rectangles.
 
 You can put all coordinates as input at once, separated by decimals (ex: -3,-3,5,6,4,7,10,12),
-or one by one with visualisation in terminal. In that case run program in terminal using this command:
+or one by one with visualisation in terminal. 
+To enable second option run program in terminal using this command:
   java Main -adv
   
  Screenshots:
