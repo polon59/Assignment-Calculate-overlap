@@ -1,5 +1,5 @@
 ## Assignment-Calculate-overlap
-Program which calculates overlapping area of two rectangles.
+Program calculates overlapping area of two rectangles.
 Parameters of the method are coordinates of bottom-left and top-right corners of both rectangles.
 
 You can put all coordinates as input at once, separated by decimals (ex: -3,-3,5,6,4,7,10,12),
